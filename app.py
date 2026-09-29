@@ -1,31 +1,37 @@
 import os
+import logging
 from auth import login
 from utils import calculate_tax
 
-def process_order():
+logging.basicConfig(level=logging.INFO)
 
+def authenticate_user():
     user = os.getenv("APP_USER")
     password = os.getenv("APP_PASSWORD")
+    return login(user, password)
 
-    if login(user, password):
-
-     prices = [1000,2000,3000]
-
+def calculate_order_total():
+    prices = [1000, 2000, 3000]
     total = 0
 
     for price in prices:
         total += price + calculate_tax(price)
 
-    print(total)
+    return total
 
-        print("Order processed")
-        print("Invoice generated")
-        print("Payment completed")
-        print("Notification sent")
-        print("Logging completed")
+def log_order_status(total):
+    logging.info(f"Order Total: {total}")
+    logging.info("Order processed")
+    logging.info("Invoice generated")
+    logging.info("Payment completed")
+    logging.info("Notification sent")
 
+def process_order():
+    if authenticate_user():
+        total = calculate_order_total()
+        log_order_status(total)
     else:
-        print("Invalid credentials")
+        logging.error("Invalid credentials")
 
 if __name__ == "__main__":
     process_order()
