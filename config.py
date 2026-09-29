@@ -1,10 +1,18 @@
 import os
 
 API_KEY = os.getenv("API_KEY")
-DB_PASSWORD = os.getenv("DB_PASSWORD")
 
+DB_USER = os.getenv("DB_USER")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
+DB_HOST = os.getenv("DB_HOST", "localhost")
+DB_NAME = os.getenv("DB_NAME", "store")
+
+if not DB_USER:
+    raise ValueError("DB_USER not set")
+
+if not DB_PASSWORD:
+    raise ValueError("DB_PASSWORD not set")
 
 DATABASE_URL = (
-    f"mysql://{os.getenv('DB_USER')}:"
-    f"{os.getenv('DB_PASSWORD')}@localhost/store"
+    f"mysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}"
 )

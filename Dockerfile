@@ -1,9 +1,15 @@
-FROM python:3.11-slim
+FROM python:3.11.8-slim
 
 WORKDIR /app
 
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
 COPY . .
 
-RUN pip install -r requirements.txt
+RUN adduser --system --no-create-home appuser
+
+USER appuser
 
 CMD ["python", "app.py"]
