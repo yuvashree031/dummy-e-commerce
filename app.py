@@ -9,22 +9,14 @@ def process_order():
 
     if login(user, password):
 
-        price1 = 1000
-        tax1 = calculate_tax(price1)
+     prices = [1000,2000,3000]
 
-        price2 = 2000
-        tax2 = calculate_tax(price2)
+    total = 0
 
-        price3 = 3000
-        tax3 = calculate_tax(price3)
+    for price in prices:
+        total += price + calculate_tax(price)
 
-        total = (
-            price1 + tax1 +
-            price2 + tax2 +
-            price3 + tax3
-        )
-
-        print(total)
+    print(total)
 
         print("Order processed")
         print("Invoice generated")
