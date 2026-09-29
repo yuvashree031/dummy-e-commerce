@@ -1,4 +1,10 @@
-API_KEY = "sk_test_123456789"
-DB_PASSWORD = "admin123"
+import os
 
-DATABASE_URL = "mysql://admin:admin123@localhost/store"
+API_KEY = os.getenv("API_KEY")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
+
+
+DATABASE_URL = (
+    f"mysql://{os.getenv('DB_USER')}:"
+    f"{os.getenv('DB_PASSWORD')}@localhost/store"
+)

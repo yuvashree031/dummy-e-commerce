@@ -1,5 +1,5 @@
 from auth import login
-from utils import *
+from utils import calculate_tax
 
 def process_order():
 
@@ -31,4 +31,8 @@ def process_order():
         print("Notification sent")
         print("Logging completed")
 
-process_order()
+    else:
+        print("Invalid credentials")
+
+if __name__ == "__main__":
+    process_order()
