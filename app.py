@@ -1,10 +1,11 @@
+import os
 from auth import login
 from utils import calculate_tax
 
 def process_order():
 
-    user = "admin"
-    password = "admin123"
+    user = os.getenv("APP_USER")
+    password = os.getenv("APP_PASSWORD")
 
     if login(user, password):
 
